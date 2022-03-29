@@ -8,7 +8,7 @@
 
 #define BUFF_SIZE 100
 
-void launch_interactive_loop(SM_t* sm)
+void launch_interactive_loop(struct stack_machine* sm)
 {
 	char buffer[BUFF_SIZE];
 
@@ -26,7 +26,7 @@ void launch_interactive_loop(SM_t* sm)
 		}
 
 		struct statement stmt;
-		if (parse_statement(&stmt, buffer))
+		if (parse_statement(&stmt, buffer) == PARSE_OK)
 		{
 			char opName[10];
 			op_to_str(opName, stmt.op);

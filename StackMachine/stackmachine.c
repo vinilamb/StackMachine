@@ -1,6 +1,6 @@
 #include "stackmachine.h"
 
-void sm_init(SM_t* sm)
+void sm_init(struct stack_machine* sm)
 {
 	for (int i = 0; i < STACK_MAX; i++)
 		sm->stack[i] = 0;
@@ -8,7 +8,7 @@ void sm_init(SM_t* sm)
 	sm->pc = -1;
 }
 
-_Bool sm_push(SM_t* sm, word_t w)
+_Bool sm_push(struct stack_machine* sm, word_t w)
 {
 	if (sm->pc < STACK_MAX - 1)
 	{
@@ -22,7 +22,7 @@ _Bool sm_push(SM_t* sm, word_t w)
 	}
 }
 
-_Bool sm_pop(SM_t* sm)
+_Bool sm_pop(struct stack_machine* sm)
 {
 	if (sm->pc >= 0)
 	{
@@ -35,7 +35,7 @@ _Bool sm_pop(SM_t* sm)
 	}
 }
 
-void sm_print_stack(SM_t* sm)
+void sm_print_stack(struct stack_machine* sm)
 {
 	printf("$R = %d\n", sm->$r);
 	if (sm->pc == -1)

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 //ADD
-_Bool exec_add(SM_t* sm)
+_Bool exec_add(struct stack_machine* sm)
 {
 	word_t op1, op2;
 	if (sm->pc < 1)
@@ -15,7 +15,7 @@ _Bool exec_add(SM_t* sm)
 }
 
 //SUB
-_Bool exec_sub(SM_t* sm)
+_Bool exec_sub(struct stack_machine* sm)
 {
 	word_t op1, op2;
 	if (sm->pc < 1)
@@ -27,7 +27,7 @@ _Bool exec_sub(SM_t* sm)
 }
 
 //MUL
-_Bool exec_mul(SM_t* sm)
+_Bool exec_mul(struct stack_machine* sm)
 {
 	word_t op1, op2;
 	if (sm->pc < 1)
@@ -39,7 +39,7 @@ _Bool exec_mul(SM_t* sm)
 }
 
 //DIV
-_Bool exec_div(SM_t* sm)
+_Bool exec_div(struct stack_machine* sm)
 {
 	word_t op1, op2;
 	if (sm->pc < 1)
@@ -51,7 +51,7 @@ _Bool exec_div(SM_t* sm)
 }
 
 //MOD
-_Bool exec_mod(SM_t* sm)
+_Bool exec_mod(struct stack_machine* sm)
 {
 	word_t op1, op2;
 	if (sm->pc < 1)
@@ -63,7 +63,7 @@ _Bool exec_mod(SM_t* sm)
 }
 
 //NOT
-_Bool exec_not(SM_t* sm)
+_Bool exec_not(struct stack_machine* sm)
 {
 	word_t op;
 	if (sm->pc == -1)
@@ -73,7 +73,7 @@ _Bool exec_not(SM_t* sm)
 }
 
 //OR
-_Bool exec_or(SM_t* sm)
+_Bool exec_or(struct stack_machine* sm)
 {
 	word_t op1, op2;
 	if (sm->pc < 1)
@@ -85,7 +85,7 @@ _Bool exec_or(SM_t* sm)
 }
 
 //AND
-_Bool exec_and(SM_t* sm)
+_Bool exec_and(struct stack_machine* sm)
 {
 	word_t op1, op2;
 	if (sm->pc < 1)
@@ -97,7 +97,7 @@ _Bool exec_and(SM_t* sm)
 }
 
 //MIR
-_Bool exec_mir(SM_t* sm)
+_Bool exec_mir(struct stack_machine* sm)
 {
 	word_t op1, op2;
 	if (sm->pc < 1)
@@ -110,25 +110,25 @@ _Bool exec_mir(SM_t* sm)
 }
 
 //PUSH WITH ARGUMENT
-_Bool exec_push_arg(SM_t* sm, word_t arg)
+_Bool exec_push_arg(struct stack_machine* sm, word_t arg)
 {
 	return sm_push(sm, arg);
 }
 
 // PUSH $R
-_Bool exec_push_reg(SM_t* sm)
+_Bool exec_push_reg(struct stack_machine* sm)
 {
 	return sm_push(sm, sm->$r);
 }
 
 //POP
-_Bool exec_pop(SM_t* sm)
+_Bool exec_pop(struct stack_machine* sm)
 {
 	return sm_pop(sm);
 }
 
 //OUT
-_Bool exec_out(SM_t* sm)
+_Bool exec_out(struct stack_machine* sm)
 {
 	if (sm->pc == -1)
 		return false;
@@ -136,12 +136,12 @@ _Bool exec_out(SM_t* sm)
 }
 
 //CLEAR
-_Bool exec_clear(SM_t* sm)
+_Bool exec_clear(struct stack_machine* sm)
 {
 	sm->pc = -1;
 }
 
-_Bool exec_statement(SM_t* sm, struct statement stmt)
+_Bool exec_statement(struct stack_machine* sm, struct statement stmt)
 {
 	switch (stmt.op)
 	{

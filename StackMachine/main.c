@@ -11,7 +11,7 @@ void main(char ** argv, int argc)
 	//printf("    i - Interactive.\n");
 	//printf("    f - File execute.\n");
 	//printf("    s - Syntax check.\n");
-	SM_t sm;
+	struct stack_machine sm;
 	sm_init(&sm);
 	launch_interactive_loop(&sm);
 }

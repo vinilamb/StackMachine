@@ -11,11 +11,13 @@ struct statement
 	_Bool push_$r;
 };
 
-enum parse_error_code
+enum parse_result
 {
-
+	PARSE_OK,
+	PARSE_MISSING_OP,
+	PARSE_UNCOMMENTED,
+	PARSE_BAD_ARG,
+	PARSE_COMMENTONLY,
 };
 
-typedef enum parse_error_code E_PARSE_ERROR;
-
-_Bool parse_statement(struct statement* statement, char* strToParse);
+enum parse_result parse_statement(struct statement* statement, char* strToParse);
